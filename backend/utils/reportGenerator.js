@@ -1,6 +1,6 @@
 const { readSheetData } = require('./googleSheets');
 const { sendEmail } = require('./email');
-const { ADMIN_NOTIFICATION_EMAIL } = require('../config/automationConfig');
+const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL;
 
 const generateDailyReport = async () => {
   try {
