@@ -7,7 +7,11 @@ let auth;
 let sheets;
 let isGoogleSheetsEnabled = false;
 
-const credentialsPath = path.join(__dirname, '../config/credentials.json');
+// In production (like on Render), the secret file is at a specific path.
+// In development, it's in the local config folder.
+const credentialsPath = process.env.NODE_ENV === 'production' 
+  ? '/etc/secrets/credentials.json' 
+  : path.join(__dirname, '../config/credentials.json');
 
 try {
   if (fs.existsSync(credentialsPath)) {
@@ -31,7 +35,6 @@ try {
 const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
 const appendToSheet = async (data) => {
-  // Check if Google Sheets is properly configured
   if (!isGoogleSheetsEnabled) {
     console.warn('Google Sheets not configured. Data not sent to sheets:', data);
     return { success: false, message: 'Google Sheets not configured' };
