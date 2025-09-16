@@ -1,6 +1,6 @@
 const axios = require('axios');
 const automationConfig = require('../config/automationConfig');
-const twilio = require('twilio')(automationConfig.TWILIO_ACCOUNT_SID, automationConfig.TWILIO_AUTH_TOKEN); // Uncommented
+const twilio = require('twilio')(automationConfig.TWILIO_ACCOUNT_SID, automationConfig.TWILIO_AUTH_TOKEN); // Uncommented // Uncommented
 
 // Helper function to format phone numbers to E.164 format
 const formatToE164 = (phoneNumber, countryCode = '+91') => {
