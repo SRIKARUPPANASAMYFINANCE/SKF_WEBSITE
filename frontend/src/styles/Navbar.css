@@ -38,7 +38,7 @@
 }
 
 .navbar.scrolled .logo a {
-  color: var(--color-primary-navy);
+  color: var(--color-primary-dark-blue);
 }
 
 .logo span {
@@ -62,7 +62,7 @@
 }
 
 .navbar.scrolled .nav-links a {
-  color: var(--color-primary-navy);
+  color: var(--color-primary-dark-blue);
 }
 
 .nav-links a:not(.btn):hover,
@@ -102,7 +102,7 @@
 }
 
 .navbar.scrolled .hamburger div {
-  background-color: var(--color-primary-navy);
+  background-color: var(--color-primary-dark-blue);
 }
 
 .hamburger .bar1.open { transform: rotate(-45deg) translate(-6px, 6px); }
@@ -156,7 +156,7 @@
     width: 100%;
     font-size: 1.125rem;
     padding: 1rem 0;
-    color: var(--color-primary-navy); /* Dark links in mobile menu */
+    color: var(--color-primary-dark-blue); /* Dark links in mobile menu */
   }
 
   .nav-links .btn {

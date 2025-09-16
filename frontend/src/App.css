@@ -207,6 +207,7 @@ small { font-size: 14px; }
   border-color: var(--color-accent-orange);
   transform: translateY(-3px);
   box-shadow: var(--shadow-medium);
+  color: var(--color-primary-dark-blue);
 }
 .btn-secondary {
   background-color: transparent;
