@@ -1,17 +1,23 @@
 const axios = require('axios');
-const automationConfig = require('../config/automationConfig');
-const twilio = require('twilio')(automationConfig.TWILIO_ACCOUNT_SID, automationConfig.TWILIO_AUTH_TOKEN); // Uncommented // Uncommented
+
+// Read config directly from environment variables
+const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER;
+const TWILIO_SMS_NUMBER = process.env.TWILIO_SMS_NUMBER;
+const OWNER_WHATSAPP_NUMBER = process.env.OWNER_WHATSAPP_NUMBER;
+const ADMIN_NOTIFICATION_PHONE = process.env.ADMIN_NOTIFICATION_PHONE;
+
+const twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 // Helper function to format phone numbers to E.164 format
 const formatToE164 = (phoneNumber, countryCode = '+91') => {
   if (!phoneNumber) return null;
-  // Remove any non-digit characters
   const digitsOnly = phoneNumber.replace(/\D/g, '');
-  // If it already starts with a '+', assume it's E.164
   if (phoneNumber.startsWith('+')) {
     return phoneNumber;
   }
-  // If it doesn't start with country code, prepend it
   if (!digitsOnly.startsWith(countryCode.replace('+', ''))) {
     return countryCode + digitsOnly;
   }
@@ -22,12 +28,10 @@ const formatToE164 = (phoneNumber, countryCode = '+91') => {
 const sendToGoogleSheets = async (applicationData) => {
   try {
     console.log('Attempting to send data to Google Sheets webhook...');
-    // In a real app, ensure your webhook URL is secure and correctly configured
-    await axios.post(automationConfig.GOOGLE_SHEETS_WEBHOOK_URL, applicationData);
+    await axios.post(GOOGLE_SHEETS_WEBHOOK_URL, applicationData);
     console.log('Data sent to Google Sheets webhook successfully.');
   } catch (error) {
     console.error('Error sending data to Google Sheets webhook:', error.message);
-    // Log full error response if available
     if (error.response) {
       console.error('Google Sheets Webhook Error Response:', error.response.data);
     }
@@ -39,7 +43,7 @@ const sendWhatsAppMessage = async (to, body = null, templateName = null, templat
   try {
     console.log(`Attempting to send WhatsApp to ${to}...`);
     const messageOptions = {
-      from: automationConfig.TWILIO_WHATSAPP_NUMBER,
+      from: TWILIO_WHATSAPP_NUMBER,
       to: to,
     };
 
@@ -56,7 +60,7 @@ const sendWhatsAppMessage = async (to, body = null, templateName = null, templat
     console.log('WhatsApp message sent successfully.');
   } catch (error) {
     console.error('Error sending WhatsApp message:', error.message);
-    throw error; // Re-throw the error so calling functions can handle it
+    throw error;
   }
 };
 
@@ -65,7 +69,7 @@ const sendSMSMessage = async (to, body) => {
   try {
     console.log(`Attempting to send SMS to ${to}...`);
     await twilio.messages.create({
-      from: automationConfig.TWILIO_SMS_NUMBER,
+      from: TWILIO_SMS_NUMBER,
       to: to,
       body: body,
     });
@@ -79,7 +83,7 @@ const sendSMSMessage = async (to, body) => {
 const sendWhatsAppNotification = async (applicantPhone, applicantName, applicationId) => {
   const formattedApplicantPhone = formatToE164(applicantPhone);
   const whatsappTo = `whatsapp:${formattedApplicantPhone}`;
-  const smsTo = formattedApplicantPhone; // SMS numbers don't need 'whatsapp:' prefix
+  const smsTo = formattedApplicantPhone;
   const whatsappTemplateName = 'HXb5b62575e6e4ff6129ad7c8efe1f983e';
   const whatsappTemplateParams = {
     1: applicantName,
@@ -87,14 +91,12 @@ const sendWhatsAppNotification = async (applicantPhone, applicantName, applicati
   };
   const smsBody = `Hi ${applicantName}, your application (ID: ${applicationId}) has been received. We'll message you within 24-48 hours with next steps.`;
 
-  // Send WhatsApp message (handle its own errors)
   try {
     await sendWhatsAppMessage(whatsappTo, null, whatsappTemplateName, whatsappTemplateParams);
   } catch (error) {
     console.error('Failed to send WhatsApp notification:', error.message);
   }
 
-  // Send SMS message (handle its own errors)
   try {
     if (smsTo) {
       await sendSMSMessage(smsTo, smsBody);
@@ -107,11 +109,11 @@ const sendWhatsAppNotification = async (applicantPhone, applicantName, applicati
 // Function to send WhatsApp and SMS messages to owner
 const sendOwnerWhatsApp = async (applicationData) => {
   const { name, phone, email, city, amountRequested, purpose } = applicationData;
-  const formattedOwnerPhone = formatToE164(automationConfig.ADMIN_NOTIFICATION_PHONE);
-  const whatsappTo = automationConfig.OWNER_WHATSAPP_NUMBER;
-  const smsTo = formattedOwnerPhone; // Assuming ADMIN_NOTIFICATION_PHONE is the owner's SMS number
+  const formattedOwnerPhone = formatToE164(ADMIN_NOTIFICATION_PHONE);
+  const whatsappTo = OWNER_WHATSAPP_NUMBER;
+  const smsTo = formattedOwnerPhone;
 
-  const whatsappTemplateName = 'HXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // Placeholder for owner notification template
+  const whatsappTemplateName = 'HXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
   const whatsappTemplateParams = {
     1: name,
     2: phone,
@@ -120,22 +122,14 @@ const sendOwnerWhatsApp = async (applicationData) => {
     5: amountRequested,
     6: purpose,
   };
-  const smsBody = `New Loan Application:
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-City: ${city}
-Amount: ${amountRequested}
-Purpose: ${purpose}`;
+  const smsBody = `New Loan Application:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nCity: ${city}\nAmount: ${amountRequested}\nPurpose: ${purpose}`;
 
-  // Send WhatsApp message (handle its own errors)
   try {
     await sendWhatsAppMessage(whatsappTo, null, whatsappTemplateName, whatsappTemplateParams);
   } catch (error) {
     console.error('Failed to send WhatsApp owner notification:', error.message);
   }
 
-  // Send SMS message (handle its own errors)
   try {
     if (smsTo) {
       await sendSMSMessage(smsTo, smsBody);
@@ -145,13 +139,9 @@ Purpose: ${purpose}`;
   }
 };
 
-
-
-// Function to send admin notification (e.g., email or internal chat)
 const sendAdminNotification = async (applicationData) => {
   try {
     console.log('Attempting to send admin notification...');
-    // This would typically involve sending an email via Nodemailer or a Slack/Teams message
     console.log(`New application received: ${applicationData.applicationId} from ${applicationData.name}. Check dashboard.`);
     console.log('Admin notification sent successfully (placeholder).');
   } catch (error) {
