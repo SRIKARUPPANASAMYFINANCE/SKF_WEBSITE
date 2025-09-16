@@ -1,0 +1,272 @@
+.hero {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  z-index: 1;
+}
+
+.hero__carousel {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%); /* Start off-screen to the right */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #1a1a2e; /* Dark, rich background for luxury feel */
+  color: #fff;
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: translateX(0); /* Slide into view */
+}
+
+.slide.is-active ~ .slide { /* For slides that come after the active one */
+  transform: translateX(-100%); /* Move previous slides off-screen to the left */
+}
+
+.hero__content h1,
+.hero__content p,
+.hero__content .slide-image,
+.hero__content .slide-icon {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide.is-active .hero__content h1,
+.slide.is-active .hero__content p,
+.slide.is-active .hero__content .slide-image,
+.slide.is-active .hero__content .slide-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide.is-active .hero__content h1 {
+  transition-delay: 0.3s;
+}
+
+.slide.is-active .hero__content p {
+  transition-delay: 0.5s;
+}
+
+.slide.is-active .hero__content .slide-image,
+.slide.is-active .hero__content .slide-icon {
+  transition-delay: 0.1s;
+}
+
+
+.hero__content {
+  max-width: 800px;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__content h1 {
+  color: #fff; /* White color for title */
+}
+
+.hero__content p {
+  color: #D4AF37; /* Golden color for tagline */
+}
+
+.slide-image {
+  max-height: 250px; /* Increased image size */
+  margin-bottom: 1rem;
+}
+
+.slide-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.carousel__dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.carousel-dot.active {
+  opacity: 1;
+  background-color: #D4AF37; /* Gold accent for active dot */
+}
+
+.carousel-dot:hover {
+  opacity: 0.8;
+}
+
+.why-choose-us, .loan-calculator-section {
+  padding: 4rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.step-flow-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step-icon {
+  background: #D4AF37; /* Gold accent */
+  color: #0C1445; /* Dark blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.calculator-placeholder {
+  margin-top: 2rem;
+}
+
+.loan-calculator-section .btn-primary {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+
+/* Additional modern and professional styling */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #0C1445;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: #D4AF37;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.btn-primary {
+  background-color: #D4AF37; /* Gold accent */
+  color: #0C1445;
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #C2A030; /* Darker gold on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .step-flow-container {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .step-item {
+    max-width: 200px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .step-item .step-icon {
+    margin-bottom: 0.5rem;
+  }
+}
+

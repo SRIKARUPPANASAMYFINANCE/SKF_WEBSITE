@@ -1,0 +1,97 @@
+/* --- ABOUT US PAGE STYLES --- */
+.about-us-page .intro-text {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-lg) auto;
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.mission-box {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+}
+
+.mission-box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.mission-box h2 {
+  color: var(--color-accent-gold);
+  margin-bottom: var(--spacing-md);
+}
+
+.values-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.value-item .icon {
+  font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+  color: var(--color-accent-gold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.value-item h3 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-xs);
+}
+
+.value-item p {
+  color: var(--color-text-dark);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 800px;
+  margin: var(--spacing-lg) auto;
+  display: block;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.about-cta {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+/* Responsive for About Us */
+@media (max-width: 768px) {
+  .values-list {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-box {
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+  }
+
+  .about-us-page .intro-text {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .value-item .icon {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .value-item h3 {
+    font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+  }
+
+  .about-cta {
+    margin-top: var(--spacing-lg);
+  }
+}

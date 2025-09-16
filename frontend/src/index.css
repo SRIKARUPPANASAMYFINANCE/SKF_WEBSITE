@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Adjust body padding for fixed Navbar on smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding-top: var(--spacing-xxl); /* Use a spacing variable for consistency */
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

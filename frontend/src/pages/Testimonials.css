@@ -1,0 +1,81 @@
+/* --- TESTIMONIALS PAGE STYLES --- */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); /* Robust responsive grid */
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.testimonial-card {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+  border: 1px solid var(--color-gray-light);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.testimonial-card .stars {
+  color: var(--color-accent-gold);
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.5px;
+}
+
+.testimonial-card .quote {
+  font-size: clamp(0.9rem, 1.8vw, 1em);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-lg);
+  flex-grow: 1;
+}
+
+.testimonial-card .author {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  font-size: clamp(0.85rem, 1.7vw, 0.95em);
+}
+
+.testimonial-card .author-photo {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  border-radius: 50%;
+  margin-right: var(--spacing-sm);
+  object-fit: cover;
+  border: 2px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  .testimonial-card {
+    padding: var(--spacing-lg);
+  }
+  .testimonial-card .stars {
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  }
+  .testimonial-card .quote {
+    font-size: clamp(0.85rem, 1.7vw, 0.95em);
+  }
+  .testimonial-card .author {
+    font-size: clamp(0.8rem, 1.6vw, 0.9em);
+  }
+  .testimonial-card .author-photo {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+  }
+}

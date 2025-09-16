@@ -1,0 +1,111 @@
+/* --- PRIVACY POLICY PAGE STYLES --- */
+.page-container {
+  padding: var(--spacing-xl) 0;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-bottom-large {
+  margin-bottom: var(--spacing-xl);
+}
+
+.content-section {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium);
+  line-height: 1.7;
+  color: var(--color-text-dark);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.content-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.content-section h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-md);
+  font-weight: 700;
+}
+
+.content-section h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  border-bottom: 2px solid var(--color-light-gray);
+  padding-bottom: var(--spacing-xs);
+}
+
+.content-section p {
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+}
+
+.content-section ul {
+  list-style: disc;
+  margin-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.content-section ul li {
+  margin-bottom: var(--spacing-sm);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  transition: color 0.2s ease-in-out;
+}
+
+.content-section ul li:hover {
+  color: var(--color-primary-dark);
+}
+
+.content-section strong {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* Keyframe for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--spacing-lg) 0;
+  }
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  .content-section {
+    padding: var(--spacing-lg);
+  }
+  .content-section h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+  .content-section h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+  .content-section p,
+  .content-section ul li {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+  }
+}

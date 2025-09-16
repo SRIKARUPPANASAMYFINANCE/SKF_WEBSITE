@@ -1,0 +1,111 @@
+/* --- CREATE LOAN PAGE STYLES --- */
+.loan-form-container {
+  max-width: 600px;
+  margin: var(--spacing-xxl) auto;
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+}
+
+.loan-form-container h2 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.loan-form-container .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.loan-form-container .form-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary-navy);
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+}
+
+.loan-form-container .form-group input[type="number"],
+.loan-form-container .form-group input[type="date"],
+.loan-form-container .form-group select {
+  width: 100%;
+  height: 45px;
+  padding: 0 var(--spacing-sm);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  transition: border-color var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+}
+
+.loan-form-container .form-group input[type="number"]:focus,
+.loan-form-container .form-group input[type="date"]:focus,
+.loan-form-container .form-group select:focus {
+  outline: none;
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.calculation-results {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-gray-light);
+}
+
+.calculation-results h3 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px dashed var(--color-gray-light);
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item span:first-child {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+}
+
+.result-item span:last-child {
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+/* Highlight for total repayable */
+.result-item:nth-child(5) span:last-child {
+  color: var(--color-accent-gold);
+  font-size: clamp(0.95rem, 1.9vw, 1.05rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loan-form-container {
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+  }
+  .calculation-results {
+    padding: var(--spacing-md);
+  }
+  .loan-form-container h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+  .calculation-results h3 {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  }
+}

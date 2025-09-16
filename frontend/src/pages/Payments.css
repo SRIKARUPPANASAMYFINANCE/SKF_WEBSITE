@@ -1,0 +1,15 @@
+/* --- PAYMENTS PAGE STYLES --- */
+/* Reusing .table-container from Customers.css for general table styling */
+
+/* Specific adjustments for payments table if needed */
+.payments-table-container {
+  /* Add any specific styles for the payments table here if it deviates from the general .table-container */
+}
+
+/* Ensure buttons within the table are styled consistently */
+.payments-table-container .btn {
+  margin-right: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  min-height: unset;
+}

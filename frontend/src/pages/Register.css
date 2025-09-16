@@ -1,0 +1,36 @@
+/* --- REGISTER PAGE STYLES --- */
+.register-form-container {
+  max-width: 450px;
+  margin: var(--spacing-xxl) auto;
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+}
+
+.register-form-container h1 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-lg);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.register-form-container .form-group {
+  text-align: left;
+  margin-bottom: var(--spacing-md);
+}
+
+.register-form-container .btn-primary {
+  margin-top: var(--spacing-md);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .register-form-container {
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+  }
+  .register-form-container h1 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+}

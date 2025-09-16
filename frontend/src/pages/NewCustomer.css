@@ -1,0 +1,109 @@
+/* --- NEW CUSTOMER PAGE STYLES --- */
+.customer-form-container {
+  max-width: 700px;
+  margin: var(--spacing-xxl) auto;
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+}
+
+.customer-form-container .form-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.customer-form-container .form-header h2 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-sm);
+}
+
+.customer-form-container .form-header p {
+  color: var(--color-text-dark);
+  font-size: clamp(0.9rem, 1.8vw, 1em);
+}
+
+.customer-form .form-section {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.customer-form .form-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.customer-form .form-section h3 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+}
+
+.customer-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--spacing-md);
+}
+
+.customer-form .form-group {
+  margin-bottom: 0;
+}
+
+.customer-form .form-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary-navy);
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+}
+
+.customer-form .form-group input[type="text"],
+.customer-form .form-group input[type="email"],
+.customer-form .form-group input[type="tel"] {
+  width: 100%;
+  height: 45px;
+  padding: 0 var(--spacing-sm);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  transition: border-color var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+}
+
+.customer-form .form-group input[type="text"]:focus,
+.customer-form .form-group input[type="email"]:focus,
+.customer-form .form-group input[type="tel"]:focus {
+  outline: none;
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.customer-form .required-field::after {
+  content: ' *';
+  color: var(--color-danger);
+  margin-left: 4px;
+}
+
+.customer-form .form-actions {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .customer-form-container {
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+  }
+  .customer-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .customer-form-container .form-header h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+  .customer-form .form-section h3 {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  }
+}

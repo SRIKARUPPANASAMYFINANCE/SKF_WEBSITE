@@ -1,0 +1,43 @@
+/* --- BLOG PAGE STYLES --- */
+.blog-section {
+  margin-top: var(--spacing-xl);
+}
+
+.blog-post-card {
+  background-color: var(--color-white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: var(--spacing-md);
+  transition: transform var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+}
+
+.blog-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.blog-post-card h3 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-sm);
+  font-size: clamp(1.4rem, 2.8vw, 1.6rem);
+}
+
+.blog-post-card p {
+  color: var(--color-text-dark);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+}
+
+.blog-post-card a {
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--anim-fast) var(--ease-standard);
+}
+
+.blog-post-card a:hover {
+  color: var(--color-primary-navy);
+  text-decoration: underline;
+}

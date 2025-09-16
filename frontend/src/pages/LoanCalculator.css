@@ -1,0 +1,76 @@
+/* --- LOAN CALCULATOR PAGE STYLES --- */
+.loan-calculator-container {
+  max-width: 600px;
+  margin: var(--spacing-xxl) auto;
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+}
+
+.loan-calculator-container h1 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+}
+
+.loan-calculator-container p.text-center {
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-dark);
+}
+
+.calculator-results {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-gray-light);
+}
+
+.calculator-results h2 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+.calculator-results > div {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px dashed var(--color-gray-light);
+}
+
+.calculator-results > div:last-child {
+  border-bottom: none;
+}
+
+.calculator-results span:first-child {
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.calculator-results span:last-child {
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+/* Highlight for total repayable */
+.calculator-results > div:nth-child(3) span:last-child {
+  color: var(--color-accent-gold);
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .loan-calculator-container {
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+  }
+  .calculator-results h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+  .calculator-results span:last-child {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+  }
+  .calculator-results > div:nth-child(3) span:last-child {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+}

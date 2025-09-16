@@ -1,0 +1,187 @@
+/* --- ADMIN DASHBOARD STYLES --- */
+
+/* General Dashboard Layout */
+.admin-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-light-grey); /* A soft background */
+  padding: var(--spacing-lg);
+}
+
+.admin-dashboard-header {
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-primary-navy);
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax for slightly larger cards */
+  gap: var(--spacing-xl); /* Increased gap for better spacing */
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl); /* Increased padding */
+  border-radius: var(--border-radius-lg); /* Slightly larger border-radius */
+  box-shadow: var(--shadow-subtle); /* More subtle initial shadow */
+  text-align: center;
+  transition: all 0.3s ease-in-out; /* Smoother transition */
+  border: 1px solid var(--color-border); /* Added a subtle border */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px); /* More pronounced lift on hover */
+  box-shadow: var(--shadow-hover); /* Stronger shadow on hover */
+  border-color: var(--color-accent-gold); /* Highlight border on hover */
+}
+
+.stat-card h3 {
+  color: var(--color-text-dark); /* Darker text for headings */
+  font-size: 1.4rem; /* Slightly larger heading */
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 2.2rem; /* Larger value font size */
+  font-weight: 800; /* Bolder value */
+  color: var(--color-primary-blue); /* A more modern blue for values */
+  margin-top: var(--spacing-sm);
+}
+
+/* Section Titles */
+.dashboard-section-title {
+  font-size: 2rem;
+  color: var(--color-primary-navy);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* Table Styles (assuming tables are used for lists like loans/customers) */
+.dashboard-table-container {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-subtle);
+  overflow-x: auto; /* Ensures responsiveness for tables */
+  margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dashboard-table th {
+  background-color: var(--color-primary-navy);
+  color: var(--color-white);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.dashboard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: var(--color-light-grey);
+}
+
+/* Buttons within Dashboard */
+.dashboard-btn {
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  background-color: var(--color-primary-navy);
+}
+
+.dashboard-btn-secondary {
+  background-color: var(--color-accent-gold);
+  color: var(--color-white);
+}
+
+.dashboard-btn-secondary:hover {
+  background-color: var(--color-accent-orange);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    padding: var(--spacing-md);
+  }
+  .admin-dashboard-header {
+    font-size: 2rem;
+  }
+  .stats-grid {
+    gap: var(--spacing-md);
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+  }
+  .stat-card {
+    padding: var(--spacing-md);
+  }
+  .stat-card h3 {
+    font-size: 1.2rem;
+  }
+  .stat-card p {
+    font-size: 1.8rem;
+  }
+  .dashboard-section-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Define CSS Variables (assuming these are defined globally or in index.css) */
+:root {
+  --color-primary-navy: #2c3e50; /* Dark blue/navy */
+  --color-primary-blue: #3498db; /* A vibrant blue */
+  --color-accent-gold: #f39c12; /* Gold/orange accent */
+  --color-accent-orange: #e67e22; /* Darker orange for hover */
+  --color-white: #ffffff;
+  --color-light-grey: #f4f7f6; /* Light background grey */
+  --color-text-dark: #333333;
+  --color-border: #e0e0e0; /* Light border color */
+
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+
+  --shadow-subtle: 0 2px 5px rgba(0, 0, 0, 0.05);
+  --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 6px 15px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  --anim-fast: 0.2s;
+  --ease-standard: ease-in-out;
+}

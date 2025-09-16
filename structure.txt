@@ -1,0 +1,50 @@
+sri-karuppanasamy-finance/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── styles/
+│   │   └── App.js
+│   ├── package.json
+│   └── .env
+├── .gitignore
+└── README.md
+
+
+
+sri-karuppanasamy-finance/
+├── backend/
+│   ├── models/
+│   │   ├── Customer.js
+│   │   ├── Loan.js
+│   │   └── Payment.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── customers.js
+│   │   ├── loans.js
+│   │   └── payments.js
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   ├── index.js
+│   │   └── index.css
+│   └── package.json

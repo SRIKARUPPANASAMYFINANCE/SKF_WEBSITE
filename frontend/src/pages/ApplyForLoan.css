@@ -1,0 +1,139 @@
+/* --- APPLY FOR LOAN PAGE STYLES --- */
+.loan-application-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+}
+
+.loan-application-form .form-section {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.loan-application-form .form-section h2 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.loan-application-form .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.loan-application-form .error-text {
+  color: var(--color-danger);
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  margin-top: var(--spacing-xs);
+}
+
+.loan-application-form .alert {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Adjustments for form elements */
+.loan-application-form input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  margin-right: var(--spacing-xs);
+}
+
+.loan-application-form .checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: var(--spacing-sm);
+}
+
+.loan-application-form .checkbox-group label {
+  font-weight: normal;
+  color: var(--color-text-dark);
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+}
+
+.loan-application-form select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292%22%20height%3D%22292%22%3E%3Cpath%20fill%3D%22%230B2545%22%20d%3D%22M287%2C197.3L146%2C56.3L5%2C197.3H287z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-sm) center;
+  background-size: 10px;
+  padding-right: var(--spacing-lg);
+}
+
+.loan-application-form button[type="submit"] {
+  width: 100%;
+}
+
+.btn-secondary {
+  background-color: var(--color-gray-light);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-gray);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xs) var(--spacing-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-gray);
+  border-color: var(--color-gray-dark);
+}
+
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.mt-2 {
+  margin-top: var(--spacing-sm);
+}
+
+/* Responsive for Apply Form */
+@media (max-width: 768px) {
+  .loan-application-form {
+    padding: var(--spacing-lg);
+  }
+  .loan-application-form .form-section h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+  .loan-application-form .form-group label {
+    font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+  }
+  .loan-application-form input[type="text"],
+  .loan-application-form input[type="email"],
+  .loan-application-form input[type="tel"],
+  .loan-application-form input[type="number"],
+  .loan-application-form input[type="date"],
+  .loan-application-form select {
+    font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+    height: 40px;
+  }
+}
+
+.loan-summary-section {
+  background-color: var(--color-light-blue); /* Or a suitable light background */
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-top: var(--spacing-lg);
+  border: 1px solid var(--color-gray-light);
+}
+
+.loan-summary-section h2 {
+  font-size: 1.5rem;
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-sm);
+}
+
+.loan-summary-section p {
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.loan-summary-section p strong {
+  color: var(--color-primary-navy);
+}

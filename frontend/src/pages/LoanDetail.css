@@ -1,0 +1,71 @@
+/* --- LOAN DETAIL PAGE STYLES --- */
+.loan-detail-container {
+  max-width: 700px;
+  margin: var(--spacing-xxl) auto;
+}
+
+.loan-detail-card {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-strong);
+}
+
+.loan-detail-card h2 {
+  color: var(--color-primary-navy);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.loan-detail-card p {
+  font-size: clamp(0.9rem, 1.8vw, 1em);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-dark);
+}
+
+.loan-detail-card p strong {
+  color: var(--color-primary-navy);
+  margin-right: var(--spacing-xs);
+}
+
+.loan-detail-actions {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.loan-detail-actions .btn {
+  margin: 0 var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+  min-height: unset;
+}
+
+/* Style for the warning button */
+.btn-warning {
+  background-color: #FFC107;
+  color: var(--color-primary-navy);
+  border-color: #FFC107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loan-detail-container {
+    margin: var(--spacing-lg) auto;
+    padding: 0 var(--spacing-sm);
+  }
+  .loan-detail-card {
+    padding: var(--spacing-lg);
+  }
+  .loan-detail-card h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+  .loan-detail-card p {
+    font-size: clamp(0.85rem, 1.7vw, 0.95em);
+  }
+}

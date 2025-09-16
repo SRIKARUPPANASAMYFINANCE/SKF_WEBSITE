@@ -1,0 +1,45 @@
+/* --- LOAN LIST PAGE STYLES --- */
+/* Reusing .table-container from Customers.css for general table styling */
+
+.status-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 4px;
+  font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-active {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: var(--color-success);
+}
+
+.status-closed {
+  background-color: rgba(23, 162, 184, 0.15);
+  color: var(--color-info);
+}
+
+.status-defaulted {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: var(--color-danger);
+}
+
+/* Small button adjustments */
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+  min-height: unset;
+}
+
+/* Info button style */
+.btn-info {
+  background-color: var(--color-info);
+  color: var(--color-white);
+  border-color: var(--color-info);
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #138496;
+}

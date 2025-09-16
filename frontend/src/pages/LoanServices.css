@@ -1,0 +1,138 @@
+/* --- LOAN SERVICES PAGE STYLES --- */
+.loan-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); /* Robust responsive grid */
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+}
+
+.product-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--anim-fast) var(--ease-standard), box-shadow var(--anim-fast) var(--ease-standard);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.product-card .icon {
+  font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+  color: var(--color-accent-gold);
+  margin-bottom: var(--spacing-md);
+}
+
+.product-card h3 {
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(1.3rem, 2.6vw, 1.5rem);
+}
+
+.product-card ul {
+  list-style: none;
+  margin-bottom: var(--spacing-lg);
+  padding-left: 0;
+}
+
+.product-card ul li {
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  position: relative;
+  color: var(--color-text-dark);
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+}
+
+.product-card ul li::before {
+  content: '✓';
+  color: var(--color-accent-gold);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.1em);
+}
+
+.product-card .btn {
+  margin-top: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  margin: var(--spacing-xl) 0;
+  border-collapse: collapse;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-strong);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.comparison-table th {
+  background-color: var(--color-background-light);
+  font-family: var(--font-heading);
+  color: var(--color-primary-navy);
+  font-size: clamp(0.9rem, 1.8vw, 1em);
+}
+
+.comparison-table td {
+  font-size: clamp(0.8rem, 1.6vw, 0.9em);
+}
+
+.comparison-table td strong {
+  font-family: var(--font-heading);
+  color: var(--color-primary-navy);
+}
+
+.calculator-cta {
+  background-color: var(--color-primary-navy);
+  color: var(--color-white);
+  padding: var(--spacing-xl);
+  text-align: center;
+  border-radius: var(--border-radius);
+}
+
+.calculator-cta h2 {
+  color: var(--color-white);
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loan-products-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  .product-card {
+    padding: var(--spacing-lg);
+  }
+  .product-card h3 {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  }
+  .product-card .icon {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+  }
+  .product-card ul li {
+    font-size: clamp(0.8rem, 1.6vw, 0.9em);
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--spacing-md);
+    font-size: clamp(0.75rem, 1.5vw, 0.85em);
+  }
+  .calculator-cta {
+    padding: var(--spacing-lg);
+  }
+  .calculator-cta h2 {
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  }
+}
