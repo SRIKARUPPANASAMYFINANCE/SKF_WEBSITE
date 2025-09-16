@@ -135,9 +135,7 @@ const ContactUs = () => {
         <div className="license-images">
           <h2 className="text-center">Our Registrations & Licenses</h2>
           <p className="text-center">Proudly registered and compliant with all local regulations.</p>
-          {/* TODO: Replace with actual license images */}
-          <img src="/images/logo.png" alt="Lending License 1" /> {/* Changed */}
-          <img src="/images/owner.jpg" alt="Lending License 2" /> {/* Changed */}
+        
         </div>
 
       </div>
