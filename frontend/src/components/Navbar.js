@@ -47,7 +47,7 @@ const Navbar = () => {
           <div className="logo">
             <h1>
               <NavLink to="/" onClick={closeNav}>
-                SKF <span>Finance</span>
+                SK <span>Finance</span>
               </NavLink>
             </h1>
           </div>

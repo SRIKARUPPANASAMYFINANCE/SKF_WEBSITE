@@ -17,10 +17,10 @@ const AboutUs = () => {
         
         {/* Introduction Text */}
         <div className="intro-text">
-          <h1>About </h1>
+          <h1>About</h1>
           <h2>SRI KARUPPANASAMY FINANCE</h2>
           <p className="section-description">
-            SRI KARUPPANASAMY FINANCE provides fast, transparent short-term loans to individuals and small businesses in Chennai and kaur. We prioritise clarity, fairness and personal support.
+            SRI KARUPPANASAMY FINANCE provides fast, transparent short-term loans to individuals and small businesses in Chennai and karur. We prioritise clarity, fairness and personal support.
           </p>
           <p className="section-description">
             With over 9 years of experience in the community, we understand the urgent needs of our customers and are committed to providing financial assistance with integrity and respect.

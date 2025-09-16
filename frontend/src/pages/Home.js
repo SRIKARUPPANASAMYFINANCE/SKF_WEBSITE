@@ -14,7 +14,7 @@ const slides = [
     type: 'image',
     src: '/images/owner.jpg',
     alt: 'SRI KARUPPANASAMY FINANCE Owner',
-    title: 'Visionary Leadership',
+    title: '  Meet Our Founder',
     subtitle: 'Dedicated to Your Prosperity'
   }
 ];
