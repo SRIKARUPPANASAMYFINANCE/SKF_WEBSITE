@@ -13,7 +13,14 @@ const { generateDailyReport } = require('./utils/reportGenerator'); // Import re
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'https://srikaruppanasamyfinance.netlify.app'
+  ],
+  optionsSuccessStatus: 200 // For legacy browser support
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(compression()); // Enable compression for all responses
 
