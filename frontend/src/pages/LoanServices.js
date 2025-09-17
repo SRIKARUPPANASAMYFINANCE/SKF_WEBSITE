@@ -8,7 +8,6 @@ const LoanServices = () => {
       icon: '👤',
       name: 'Personal Loan',
       tenure: '10 weeks',
-      interest: '25%',
       repayment: 'Weekly',
       maxAmount: '50,000',
     },
@@ -16,7 +15,6 @@ const LoanServices = () => {
       icon: '🏪',
       name: 'Small Business Loan',
       tenure: '10 weeks',
-      interest: '25%',
       repayment: 'Weekly',
       maxAmount: '1,00,000',
     },
@@ -24,7 +22,6 @@ const LoanServices = () => {
       icon: '🎓',
       name: 'Education Loan',
       tenure: '10 weeks',
-      interest: '22%',
       repayment: 'Weekly',
       maxAmount: '75,000',
     },
@@ -46,7 +43,6 @@ const LoanServices = () => {
               <h3>{product.name}</h3>
               <ul>
                 <li><strong>Tenure:</strong> {product.tenure}</li>
-                <li><strong>Interest:</strong> {product.interest} (fixed)</li>
                 <li><strong>Repayment:</strong> {product.repayment}</li>
                 <li><strong>Max Amount:</strong> ₹{product.maxAmount}</li>
               </ul>
@@ -73,10 +69,6 @@ const LoanServices = () => {
                 {loanProducts.map((p, i) => <td key={i}>₹{p.maxAmount}</td>)}
               </tr>
               <tr>
-                <td><strong>Interest Rate</strong></td>
-                {loanProducts.map((p, i) => <td key={i}>{p.interest}</td>)}
-              </tr>
-              <tr>
                 <td><strong>Tenure</strong></td>
                 {loanProducts.map((p, i) => <td key={i}>{p.tenure}</td>)}
               </tr>
@@ -90,8 +82,8 @@ const LoanServices = () => {
 
         {/* Loan Calculator CTA */}
         <div className="calculator-cta margin-top-large">
-          <h2>Not Sure Which Loan is Right for You?</h2>
-          <p>Use our simple loan calculator to estimate your weekly payments.</p>
+          <h2 style={{color: '#2c3e50'}}>Not Sure Which Loan is Right for You?</h2>
+          <p style={{color: 'black'}}>Use our simple loan calculator to estimate your weekly payments.</p>
           <Link to="/calculator" className="btn btn-primary">Open Loan Calculator</Link>
         </div>
 
