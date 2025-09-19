@@ -69,18 +69,11 @@ const createApplication = async (req, res) => {
       application.isWhatsApp ? 'Yes' : 'No', // Convert boolean to Yes/No for sheet
     ]);
 
-    automationService.sendWhatsAppNotification(application.mobile, application.fullName, application.applicationId);
-    automationService.sendOwnerWhatsApp({
-      name: fullName,
-      phone: mobile,
-      amountRequested: parsedAmountRequested,
-      loanType: loanType,
-      tenure: parsedTenure,
-      isWhatsApp: isWhatsApp
-    });
+    automationService.sendApplicantNotification(application.mobile, application.fullName, application.applicationId, application.email);
+    automationService.sendOwnerNotification(application); // Pass the entire application object
     automationService.sendAdminNotification({
       applicationId: application.applicationId,
-      name: application.fullName,
+      fullName: application.fullName, // Changed 'name' to 'fullName' for consistency
       amountRequested: application.amountRequested,
     });
 

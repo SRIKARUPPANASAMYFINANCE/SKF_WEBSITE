@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { sendEmail } = require('./email'); // Import sendEmail
 
 // Read config directly from environment variables
 const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
@@ -8,6 +9,8 @@ const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER;
 const TWILIO_SMS_NUMBER = process.env.TWILIO_SMS_NUMBER;
 const OWNER_WHATSAPP_NUMBER = process.env.OWNER_WHATSAPP_NUMBER;
 const ADMIN_NOTIFICATION_PHONE = process.env.ADMIN_NOTIFICATION_PHONE;
+const OWNER_EMAIL = process.env.OWNER_EMAIL; // Owner's email
+const EMAIL_USER = process.env.EMAIL_USER; // Email user for 'from' address
 
 const twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
@@ -79,8 +82,8 @@ const sendSMSMessage = async (to, body) => {
   }
 };
 
-// Function to send WhatsApp and SMS messages to applicant
-const sendWhatsAppNotification = async (applicantPhone, applicantName, applicationId) => {
+// Function to send WhatsApp, SMS and Email messages to applicant
+const sendApplicantNotification = async (applicantPhone, applicantName, applicationId, applicantEmail) => {
   const formattedApplicantPhone = formatToE164(applicantPhone);
   const whatsappTo = `whatsapp:${formattedApplicantPhone}`;
   const smsTo = formattedApplicantPhone;
@@ -90,44 +93,114 @@ const sendWhatsAppNotification = async (applicantPhone, applicantName, applicati
     2: applicationId,
   };
   const smsBody = `Hi ${applicantName}, your application (ID: ${applicationId}) has been received. We'll message you within 24-48 hours with next steps.`;
+  const emailSubject = `Loan Application Received - ID: ${applicationId}`;
+  const emailBody = `Dear ${applicantName},
 
-  try {
-    await sendWhatsAppMessage(whatsappTo, null, whatsappTemplateName, whatsappTemplateParams);
-  } catch (error) {
-    console.error('Failed to send WhatsApp notification:', error.message);
-  }
+Your loan application with ID: ${applicationId} has been successfully received. We are currently reviewing your application and will get back to you within 24-48 hours with the next steps.
+
+Thank you for choosing SRI KARUPPASAMY FINANCE.
+
+Sincerely,
+SRI KARUPPASAMY FINANCE Team`;
+
+  // Temporarily disabled WhatsApp notification for applicant as per user request
+  // try {
+  //   await sendWhatsAppMessage(whatsappTo, null, whatsappTemplateName, whatsappTemplateParams);
+  // } catch (error) {
+  //   console.error('Failed to send WhatsApp notification to applicant:', error.message);
+  // }
 
   try {
     if (smsTo) {
       await sendSMSMessage(smsTo, smsBody);
     }
   } catch (error) {
-    console.error('Failed to send SMS notification:', error.message);
+    console.error('Failed to send SMS notification to applicant:', error.message);
   }
+
+  // Temporarily disabled email notification for applicant as per user request
+  // try {
+  //   if (applicantEmail) {
+  //     await sendEmail(applicantEmail, emailSubject, emailBody);
+  //     console.log('Email notification sent to applicant successfully.');
+  //   }
+  // } catch (error) {
+  //   console.error('Failed to send email notification to applicant:', error.message);
+  // }
 };
 
-// Function to send WhatsApp and SMS messages to owner
-const sendOwnerWhatsApp = async (applicationData) => {
-  const { name, phone, email, city, amountRequested, purpose } = applicationData;
+// Function to send WhatsApp, SMS and Email messages to owner
+const sendOwnerNotification = async (applicationData) => {
+  const {
+    applicationId,
+    fullName,
+    mobile,
+    isWhatsApp,
+    email,
+    amountRequested,
+    purpose,
+    loanType,
+    tenure,
+    address,
+    status,
+    createdAt,
+  } = applicationData;
+
   const formattedOwnerPhone = formatToE164(ADMIN_NOTIFICATION_PHONE);
   const whatsappTo = OWNER_WHATSAPP_NUMBER;
   const smsTo = formattedOwnerPhone;
 
-  const whatsappTemplateName = 'HXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+  const whatsappTemplateName = 'HXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // This might need to be a generic template or a direct message
   const whatsappTemplateParams = {
-    1: name,
-    2: phone,
-    3: email,
-    4: city,
-    5: amountRequested,
-    6: purpose,
+    1: fullName,
+    2: mobile,
+    3: email || 'N/A',
+    4: amountRequested.toString(),
+    5: purpose || 'N/A',
+    6: loanType,
+    7: tenure.toString(),
+    8: address,
+    9: status,
+    10: applicationId,
+    11: isWhatsApp ? 'Yes' : 'No',
+    12: new Date(createdAt).toLocaleString(),
   };
-  const smsBody = `New Loan Application:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nCity: ${city}\nAmount: ${amountRequested}\nPurpose: ${purpose}`;
+
+  const notificationDetails = `New Loan Application (ID: ${applicationId}):
+Name: ${fullName}
+Mobile: ${mobile} (WhatsApp: ${isWhatsApp ? 'Yes' : 'No'})
+Email: ${email || 'N/A'}
+Amount: ${amountRequested}
+Purpose: ${purpose || 'N/A'}
+Loan Type: ${loanType}
+Tenure: ${tenure} months
+Address: ${address}
+Status: ${status}
+Applied On: ${new Date(createdAt).toLocaleString()}`;
+
+  const smsBody = notificationDetails;
+  const emailSubject = `New Loan Application Received - ID: ${applicationId}`;
+  const emailBody = `Dear Owner,
+
+A new loan application has been submitted. Here are the details:
+
+${notificationDetails}
+
+Please log in to the admin dashboard for more details and to process the application.
+
+Sincerely,
+SRI KARUPPASAMY FINANCE System`;
 
   try {
     await sendWhatsAppMessage(whatsappTo, null, whatsappTemplateName, whatsappTemplateParams);
   } catch (error) {
     console.error('Failed to send WhatsApp owner notification:', error.message);
+    try {
+      await sendWhatsAppMessage(whatsappTo, smsBody);
+      console.log('Sent direct WhatsApp message to owner as fallback.');
+    } catch (fallbackError) {
+      console.error('Failed to send direct WhatsApp message to owner as fallback:', fallbackError.message);
+    }
   }
 
   try {
@@ -137,12 +210,22 @@ const sendOwnerWhatsApp = async (applicationData) => {
   } catch (error) {
     console.error('Failed to send SMS owner notification:', error.message);
   }
+
+  // Temporarily disabled email notification for owner as per user request
+  // try {
+  //   if (OWNER_EMAIL) {
+  //     await sendEmail(OWNER_EMAIL, emailSubject, emailBody);
+  //     console.log('Email notification sent to owner successfully.');
+  //   }
+  // } catch (error) {
+  //   console.error('Failed to send email notification to owner:', error.message);
+  // }
 };
 
 const sendAdminNotification = async (applicationData) => {
   try {
     console.log('Attempting to send admin notification...');
-    console.log(`New application received: ${applicationData.applicationId} from ${applicationData.name}. Check dashboard.`);
+    console.log(`New application received: ${applicationData.applicationId} from ${applicationData.fullName}. Check dashboard.`);
     console.log('Admin notification sent successfully (placeholder).');
   } catch (error) {
     console.error('Error sending admin notification:', error.message);
@@ -151,7 +234,7 @@ const sendAdminNotification = async (applicationData) => {
 
 module.exports = {
   sendToGoogleSheets,
-  sendWhatsAppNotification,
+  sendApplicantNotification, // Renamed from sendWhatsAppNotification
   sendAdminNotification,
-  sendOwnerWhatsApp,
+  sendOwnerNotification, // Renamed from sendOwnerWhatsApp
 };

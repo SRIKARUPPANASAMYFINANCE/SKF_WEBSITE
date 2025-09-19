@@ -3,21 +3,22 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'YOUR_EMAIL@gmail.com', // Replace with your email
-    pass: 'YOUR_PASSWORD', // Replace with your password
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
 const sendEmail = async (to, subject, text) => {
   try {
     await transporter.sendMail({
-      from: 'YOUR_EMAIL@gmail.com', // Replace with your email
+      from: process.env.EMAIL_USER,
       to,
       subject,
       text,
     });
   } catch (error) {
     console.error('Error sending email:', error);
+    throw error; // Re-throw the error so calling functions can handle it
   }
 };
 
